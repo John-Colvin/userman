@@ -40,6 +40,7 @@ RestInterfaceClient!UserManAPI createUserManRestAPI(URL base_url)
 
 /// Root entry point for the UserMan API
 interface UserManAPI {
+@safe:
 	/// Interface suitable for manipulating user information
 	@property Collection!UserManUserAPI users();
 
@@ -55,6 +56,7 @@ class UserManAPISettings : UserManCommonSettings {
 
 /// Interface suitable for manipulating user information
 interface UserManUserAPI {
+@safe:
 	struct CollectionIndices {
 		User.ID _user;
 	}
@@ -131,6 +133,7 @@ interface UserManUserAPI {
 }
 
 interface UserManUserPropertyAPI {
+@safe:
 	struct CollectionIndices {
 		User.ID _user;
 		string _name;
@@ -154,7 +157,7 @@ struct User {
 	//Json[string] properties;
 
 	this(userman.db.controller.User usr)
-	{
+	@safe {
 		this.id = usr.id;
 		this.active = usr.active;
 		this.banned = usr.banned;
@@ -166,6 +169,7 @@ struct User {
 
 /// Interface suitable for manipulating group information
 interface UserManGroupAPI {
+@safe:
 	struct CollectionIndices {
 		string _group;
 	}
@@ -195,6 +199,7 @@ interface UserManGroupAPI {
 }
 
 interface UserManGroupMemberAPI {
+@safe:
 	struct CollectionIndices {
 		string _group;
 		User.ID _user;
@@ -354,7 +359,7 @@ private class UserManUserAPIImpl : UserManUserAPI {
 	{
 		m_ctrl.setFullName(id, full_name);
 	}
-	
+
 	void setPassword(User.ID id, string password)
 	{
 		m_ctrl.setPassword(id, password);
@@ -381,7 +386,7 @@ private class UserManUserAPIImpl : UserManUserAPI {
 			import vibe.core.log; logInfo("DO IT");
 		}
 	}
-	
+
 	void setProperty(User.ID id, string name, Json value)
 	{
 		m_ctrl.setProperty(id, name, value);

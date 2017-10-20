@@ -42,6 +42,7 @@ UserManController createUserManController(UserManSettings settings)
 }
 
 class UserManController {
+@safe:
 	protected {
 		UserManSettings m_settings;
 	}
