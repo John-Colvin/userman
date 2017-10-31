@@ -1,2 +1,17 @@
 language: d
 sudo: false
+
+os:
+ - linux
+ - osx
+
+addons:
+  apt:
+    packages:
+      - libevent
+
+install:
+ - if [ $TRAVIS_OS_NAME == osx ];
+   then
+     brew install libevent;
+   fi
